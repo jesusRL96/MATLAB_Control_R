@@ -1,0 +1,170 @@
+                * Matrices A
+ 
+A1 =
+ 
+[ -cos(q1),  0,  sin(q1), -l1*cos(q1)]
+[ -sin(q1),  0, -cos(q1), -l1*sin(q1)]
+[        0, -1,        0,           0]
+[        0,  0,        0,           1]
+ 
+ 
+A2 =
+ 
+[ cos(q2), -sin(q2), 0, l2*cos(q2)]
+[ sin(q2),  cos(q2), 0, l2*sin(q2)]
+[       0,        0, 1,          0]
+[       0,        0, 0,          1]
+ 
+ 
+A3 =
+ 
+[ cos(q3), -sin(q3), 0, l3*cos(q3)]
+[ sin(q3),  cos(q3), 0, l3*sin(q3)]
+[       0,        0, 1,          0]
+[       0,        0, 0,          1]
+ 
+                * Multiplicaciones de matrices A
+ 
+A12 =
+ 
+[ -cos(q1)*cos(q2), cos(q1)*sin(q2),  sin(q1), -cos(q1)*(l1 + l2*cos(q2))]
+[ -cos(q2)*sin(q1), sin(q1)*sin(q2), -cos(q1), -sin(q1)*(l1 + l2*cos(q2))]
+[         -sin(q2),        -cos(q2),        0,                -l2*sin(q2)]
+[                0,               0,        0,                          1]
+ 
+ 
+A123 =
+ 
+[ -cos(q2 + q3)*cos(q1), sin(q2 + q3)*cos(q1),  sin(q1), -cos(q1)*(l1 + l3*cos(q2 + q3) + l2*cos(q2))]
+[ -cos(q2 + q3)*sin(q1), sin(q2 + q3)*sin(q1), -cos(q1), -sin(q1)*(l1 + l3*cos(q2 + q3) + l2*cos(q2))]
+[         -sin(q2 + q3),        -cos(q2 + q3),        0,               - l3*sin(q2 + q3) - l2*sin(q2)]
+[                     0,                    0,        0,                                            1]
+ 
+                * Valores de Z_n, O_n y Ocm_n
+ 
+Z_s =
+ 
+[ 0,  sin(q1),  sin(q1)]
+[ 0, -cos(q1), -cos(q1)]
+[ 1,        0,        0]
+ 
+ 
+O_s =
+ 
+[ 0, -l1*cos(q1), -cos(q1)*(l1 + l2*cos(q2))]
+[ 0, -l1*sin(q1), -sin(q1)*(l1 + l2*cos(q2))]
+[ 0,           0,                -l2*sin(q2)]
+ 
+ 
+Ocm_s =
+ 
+[ -lc1*cos(q1), -cos(q1)*(l1 + lc2*cos(q2)), -cos(q1)*(l1 + lc3*cos(q2 + q3) + l2*cos(q2))]
+[ -lc1*sin(q1), -sin(q1)*(l1 + lc2*cos(q2)), -sin(q1)*(l1 + lc3*cos(q2 + q3) + l2*cos(q2))]
+[            0,                -lc2*sin(q2),               - lc3*sin(q2 + q3) - l2*sin(q2)]
+ 
+                *Jacobianos:
+            -Jacobiano:1
+ 
+Jcm1 =
+ 
+[  lc1*sin(q1), 0, 0]
+[ -lc1*cos(q1), 0, 0]
+[            0, 0, 0]
+[            0, 0, 0]
+[            0, 0, 0]
+[            1, 0, 0]
+ 
+            -Jacobiano:2
+ 
+Jcm2 =
+ 
+[  sin(q1)*(l1 + lc2*cos(q2)), lc2*cos(q1)*sin(q2), 0]
+[ -cos(q1)*(l1 + lc2*cos(q2)), lc2*sin(q1)*sin(q2), 0]
+[                           0,        -lc2*cos(q2), 0]
+[                           0,             sin(q1), 0]
+[                           0,            -cos(q1), 0]
+[                           1,                   0, 0]
+ 
+            -Jacobiano:3
+ 
+Jcm3 =
+ 
+[  sin(q1)*(l1 + lc3*cos(q2 + q3) + l2*cos(q2)), cos(q1)*(lc3*sin(q2 + q3) + l2*sin(q2)), lc3*sin(q2 + q3)*cos(q1)]
+[ -cos(q1)*(l1 + lc3*cos(q2 + q3) + l2*cos(q2)), sin(q1)*(lc3*sin(q2 + q3) + l2*sin(q2)), lc3*sin(q2 + q3)*sin(q1)]
+[                                             0,         - lc3*cos(q2 + q3) - l2*cos(q2),        -lc3*cos(q2 + q3)]
+[                                             0,                                 sin(q1),                  sin(q1)]
+[                                             0,                                -cos(q1),                 -cos(q1)]
+[                                             1,                                       0,                        0]
+ 
+             *Matriz de inercia D(q)
+ 
+D =
+ 
+[ Ix2/2 + Ix3/2 + Iy1 + Iy2/2 + Iy3/2 - (Ix3*cos(2*q2 + 2*q3))/2 + (Iy3*cos(2*q2 + 2*q3))/2 + l1^2*m2 + l1^2*m3 + (l2^2*m3)/2 + lc1^2*m1 + (lc2^2*m2)/2 + (lc3^2*m3)/2 - (Ix2*cos(2*q2))/2 + (Iy2*cos(2*q2))/2 + (l2^2*m3*cos(2*q2))/2 + (lc2^2*m2*cos(2*q2))/2 + (lc3^2*m3*cos(2*q2 + 2*q3))/2 + 2*l1*lc3*m3*cos(q2 + q3) + 2*l1*l2*m3*cos(q2) + 2*l1*lc2*m2*cos(q2) + l2*lc3*m3*cos(q3) + l2*lc3*m3*cos(2*q2 + q3),                                                               0,                                  0]
+[                                                                                                                                                                                                                                                                                                                                                                                                                  0, m3*l2^2 + 2*m3*cos(q3)*l2*lc3 + m2*lc2^2 + m3*lc3^2 + Iz2 + Iz3, m3*lc3^2 + l2*m3*cos(q3)*lc3 + Iz3]
+[                                                                                                                                                                                                                                                                                                                                                                                                                  0,                              m3*lc3^2 + l2*m3*cos(q3)*lc3 + Iz3,                     m3*lc3^2 + Iz3]
+ 
+                  *Matriz de coriolis C(q,qp)
+ 
+C =
+ 
+[ (Ix2*q2p*sin(2*q2))/2 - (Iy2*q2p*sin(2*q2))/2 + (Ix3*q2p*sin(2*q2 + 2*q3))/2 + (Ix3*q3p*sin(2*q2 + 2*q3))/2 - (Iy3*q2p*sin(2*q2 + 2*q3))/2 - (Iy3*q3p*sin(2*q2 + 2*q3))/2 - (l2^2*m3*q2p*sin(2*q2))/2 - (lc2^2*m2*q2p*sin(2*q2))/2 - (lc3^2*m3*q2p*sin(2*q2 + 2*q3))/2 - (lc3^2*m3*q3p*sin(2*q2 + 2*q3))/2 - l2*lc3*m3*q2p*sin(2*q2 + q3) - (l2*lc3*m3*q3p*sin(2*q2 + q3))/2 - l1*lc3*m3*q2p*sin(q2 + q3) - l1*lc3*m3*q3p*sin(q2 + q3) - l1*l2*m3*q2p*sin(q2) - l1*lc2*m2*q2p*sin(q2) - (l2*lc3*m3*q3p*sin(q3))/2, -(q1p*(m3*sin(2*q2)*l2^2 + 2*m3*sin(2*q2 + q3)*l2*lc3 + 2*l1*m3*sin(q2)*l2 + m2*sin(2*q2)*lc2^2 + 2*l1*m2*sin(q2)*lc2 + m3*sin(2*q2 + 2*q3)*lc3^2 + 2*l1*m3*sin(q2 + q3)*lc3 - Ix3*sin(2*q2 + 2*q3) + Iy3*sin(2*q2 + 2*q3) - Ix2*sin(2*q2) + Iy2*sin(2*q2)))/2, -(q1p*(Iy3*sin(2*q2 + 2*q3) - Ix3*sin(2*q2 + 2*q3) + lc3^2*m3*sin(2*q2 + 2*q3) + 2*l1*lc3*m3*sin(q2 + q3) + l2*lc3*m3*sin(q3) + l2*lc3*m3*sin(2*q2 + q3)))/2]
+[                                                                                                                                                                                                                                                     (q1p*(m3*sin(2*q2)*l2^2 + 2*m3*sin(2*q2 + q3)*l2*lc3 + 2*l1*m3*sin(q2)*l2 + m2*sin(2*q2)*lc2^2 + 2*l1*m2*sin(q2)*lc2 + m3*sin(2*q2 + 2*q3)*lc3^2 + 2*l1*m3*sin(q2 + q3)*lc3 - Ix3*sin(2*q2 + 2*q3) + Iy3*sin(2*q2 + 2*q3) - Ix2*sin(2*q2) + Iy2*sin(2*q2)))/2,                                                                                                                                                                                                                                         -l2*lc3*m3*q3p*sin(q3),                                                                                                                               -l2*lc3*m3*sin(q3)*(q2p + q3p)]
+[                                                                                                                                                                                                                                                                                                                                                       (q1p*(Iy3*sin(2*q2 + 2*q3) - Ix3*sin(2*q2 + 2*q3) + lc3^2*m3*sin(2*q2 + 2*q3) + 2*l1*lc3*m3*sin(q2 + q3) + l2*lc3*m3*sin(q3) + l2*lc3*m3*sin(2*q2 + q3)))/2,                                                                                                                                                                                                                                          l2*lc3*m3*q2p*sin(q3),                                                                                                                                                            0]
+ 
+                     *vector de efectos gravitacionales g(q)
+ 
+phi =
+ 
+ -g*cos(q1)*(l1*m2 + l1*m3 + lc1*m1 + l2*m3*cos(q2) + lc2*m2*cos(q2) + lc3*m3*cos(q2 + q3))
+                           g*sin(q1)*(l2*m3*sin(q2) + lc2*m2*sin(q2) + lc3*m3*sin(q2 + q3))
+                                                              g*lc3*m3*sin(q2 + q3)*sin(q1)
+ 
+                *Vector de fuerzas T
+ 
+T =
+ 
+ T1
+ T2
+ T3
+ 
+VALORES NUMERICOS
+ 
+D =
+ 
+[ 0.06*cos(2.0*q2 + q3) + 0.1338125*cos(2.0*q2) + 0.144*cos(q2 + q3) + 0.825*cos(q2) + 0.06*cos(q3) - 0.0214*cos(2.0*q2 + 2.0*q3) + 1.1369125,                       0,                     0]
+[                                                                                                                                           0, 0.12*cos(q3) + 0.304825, 0.06*cos(q3) + 0.0292]
+[                                                                                                                                           0,   0.06*cos(q3) + 0.0292,                0.0292]
+ 
+ 
+C =
+ 
+[ 0.0214*q2p*sin(2.0*q2 + 2.0*q3) - 0.03*q3p*sin(2.0*q2 + q3) - 0.1338125*q2p*sin(2.0*q2) - 0.072*q2p*sin(q2 + q3) - 0.072*q3p*sin(q2 + q3) - 0.4125*q2p*sin(q2) - 0.03*q3p*sin(q3) - 0.06*q2p*sin(2.0*q2 + q3) + 0.0214*q3p*sin(2.0*q2 + 2.0*q3), -0.5*q1p*(0.12*sin(2.0*q2 + q3) + 0.267625*sin(2.0*q2) + 0.144*sin(q2 + q3) + 0.825*sin(q2) - 0.0428*sin(2.0*q2 + 2.0*q3)), -0.5*q1p*(0.06*sin(2.0*q2 + q3) + 0.144*sin(q2 + q3) + 0.06*sin(q3) - 0.0428*sin(2.0*q2 + 2.0*q3))]
+[                                                                                                                       0.5*q1p*(0.12*sin(2.0*q2 + q3) + 0.267625*sin(2.0*q2) + 0.144*sin(q2 + q3) + 0.825*sin(q2) - 0.0428*sin(2.0*q2 + 2.0*q3)),                                                                                                          -0.06*q3p*sin(q3),                                                                          -0.06*sin(q3)*(q2p + q3p)]
+[                                                                                                                                               0.5*q1p*(0.06*sin(2.0*q2 + q3) + 0.144*sin(q2 + q3) + 0.06*sin(q3) - 0.0428*sin(2.0*q2 + 2.0*q3)),                                                                                                           0.06*q2p*sin(q3),                                                                                                  0]
+ 
+ 
+phi =
+ 
+ -1.0*g*cos(q1)*(0.24*cos(q2 + q3) + 1.375*cos(q2) + 3.75)
+             g*sin(q1)*(0.24*sin(q2 + q3) + 1.375*sin(q2))
+                               0.24*g*sin(q2 + q3)*sin(q1)
+ 
+                  *PROPIEDAD DE ANTISIMETRIA
+S=Dp-2*C:
+ 
+S =
+ 
+[                                                                                                                              0, (q1p*(4800.0*sin(2.0*q2 + q3) - 1712.0*sin(2*q2 + 2*q3) + 10705.0*sin(2.0*q2) + 5760.0*sin(q2 + q3) + 33000.0*sin(q2)))/40000, (q1p*(150.0*sin(2.0*q2 + q3) - 107.0*sin(2*q2 + 2*q3) + 360.0*sin(q2 + q3) + 150.0*sin(q3)))/2500]
+[ -(q1p*(4800.0*sin(2.0*q2 + q3) - 1712.0*sin(2*q2 + 2*q3) + 10705.0*sin(2.0*q2) + 5760.0*sin(q2 + q3) + 33000.0*sin(q2)))/40000,                                                                                                                             0,                                                                     sin(q3)*(0.12*q2p + 0.06*q3p)]
+[                             -(q1p*(150.0*sin(2.0*q2 + q3) - 107.0*sin(2*q2 + 2*q3) + 360.0*sin(q2 + q3) + 150.0*sin(q3)))/2500,                                                                                                -sin(q3)*(0.12*q2p + 0.06*q3p),                                                                                                 0]
+ 
+S+S':
+ 
+ans =
+ 
+[ 0, 0, 0]
+[ 0, 0, 0]
+[ 0, 0, 0]
+ 
+>> 
